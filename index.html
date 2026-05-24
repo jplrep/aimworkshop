@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AIM — Automotive Invoice Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg:#0f0f0f;
+  --surface:#181818;
+  --card:#1f1f1f;
+  --border:#2a2a2a;
+  --accent:#b91c1c;
+  --accent2:#059669;
+  --text:#f0ede8;
+  --muted:#6b7280;
+  --font-head:'Bebas Neue',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(15,15,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-head);font-size:28px;letter-spacing:2px;color:var(--accent);}
+.nav-logo span{display:block;font-family:var(--font-body);font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-top:-4px;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:.5px;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--accent);color:#fff;padding:9px 20px;font-size:13px;font-weight:500;border:none;cursor:pointer;letter-spacing:.5px;transition:opacity .2s;text-decoration:none;}
+.nav-cta:hover{opacity:.85;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 40px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 60% 50% at 80% 50%, rgba(185,28,28,.08) 0%, transparent 70%);pointer-events:none;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
+.hero-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;}
+.hero-title{font-family:var(--font-head);font-size:clamp(60px,8vw,110px);letter-spacing:2px;line-height:.95;color:var(--text);margin-bottom:28px;}
+.hero-title em{color:var(--accent);font-style:normal;}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:440px;margin-bottom:40px;}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.btn-primary{background:var(--accent);color:#fff;padding:14px 28px;font-family:var(--font-body);font-size:14px;font-weight:500;border:none;cursor:pointer;letter-spacing:.5px;transition:opacity .2s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{opacity:.85;}
+.btn-ghost{background:transparent;color:var(--text);padding:13px 28px;font-family:var(--font-body);font-size:14px;font-weight:500;border:1px solid var(--border);cursor:pointer;letter-spacing:.5px;transition:border-color .2s,color .2s;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{border-color:var(--muted);color:var(--text);}
+
+/* ── MOCK UI ── */
+.mock-ui{background:var(--surface);border:1px solid var(--border);overflow:hidden;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.5);}
+.mock-topbar{background:var(--card);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.mock-dot{width:10px;height:10px;border-radius:50%;}
+.mock-title{font-family:var(--font-head);font-size:18px;letter-spacing:1px;color:var(--text);margin-left:8px;}
+.mock-body{display:grid;grid-template-columns:180px 1fr;min-height:320px;}
+.mock-sidebar{background:var(--surface);border-right:1px solid var(--border);padding:16px 0;}
+.mock-nav-item{padding:10px 16px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.mock-nav-item.active{color:var(--accent);background:rgba(185,28,28,.08);border-right:2px solid var(--accent);}
+.mock-nav-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.mock-content{padding:20px;background:var(--bg);}
+.mock-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.mock-stat{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
+.mock-stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.mock-stat-val{font-family:var(--font-head);font-size:26px;letter-spacing:1px;color:var(--text);}
+.mock-stat.green .mock-stat-val{color:var(--accent2);}
+.mock-stat.red .mock-stat-val{color:var(--accent);}
+.mock-table{background:var(--card);border:1px solid var(--border);}
+.mock-table-head{display:grid;grid-template-columns:1fr 80px 80px 70px;padding:8px 12px;border-bottom:1px solid var(--border);}
+.mock-table-head span{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.mock-row{display:grid;grid-template-columns:1fr 80px 80px 70px;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;}
+.mock-row:last-child{border-bottom:none;}
+.mock-row span{font-size:11px;color:var(--text);}
+.mock-badge{display:inline-block;padding:2px 8px;font-size:10px;font-family:var(--font-mono);}
+.mock-badge.paid{background:rgba(5,150,105,.15);color:#34d399;}
+.mock-badge.approved{background:rgba(59,130,246,.15);color:#60a5fa;}
+.mock-badge.draft{background:rgba(107,114,128,.15);color:#9ca3af;}
+.mock-badge.overdue{background:rgba(185,28,28,.15);color:#f87171;}
+.xero-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(5,150,105,.1);border:1px solid rgba(5,150,105,.25);font-size:10px;font-family:var(--font-mono);color:#34d399;}
+.xero-chip-dot{width:5px;height:5px;border-radius:50%;background:#34d399;animation:pulse 2s infinite;}
+
+/* ── FEATURES ── */
+.section{padding:100px 40px;max-width:1200px;margin:0 auto;}
+.section-label{font-family:var(--font-mono);font-size:11px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;}
+.section-title{font-family:var(--font-head);font-size:clamp(36px,5vw,64px);letter-spacing:1px;line-height:1;margin-bottom:20px;}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:520px;margin-bottom:60px;}
+
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.feature{background:var(--bg);padding:36px 32px;transition:background .2s;}
+.feature:hover{background:var(--surface);}
+.feature-icon{width:40px;height:40px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:18px;}
+.feature-title{font-family:var(--font-head);font-size:22px;letter-spacing:.5px;margin-bottom:10px;color:var(--text);}
+.feature-body{font-size:13px;color:var(--muted);line-height:1.7;}
+
+/* ── XERO SECTION ── */
+.xero-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:100px 40px;}
+.xero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.xero-logo-row{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
+.xero-logo-box{background:var(--card);border:1px solid rgba(5,150,105,.3);padding:10px 18px;font-family:var(--font-head);font-size:24px;letter-spacing:2px;color:#34d399;}
+.plus{font-family:var(--font-head);font-size:32px;color:var(--muted);}
+.aim-logo-box{font-family:var(--font-head);font-size:24px;letter-spacing:2px;color:var(--accent);}
+.xero-features{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+.xero-feature{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--card);border:1px solid var(--border);}
+.xero-feature-check{width:20px;height:20px;border:1px solid var(--accent2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:11px;color:var(--accent2);}
+.xero-feature-text strong{display:block;font-size:13px;font-weight:600;margin-bottom:3px;color:var(--text);}
+.xero-feature-text span{font-size:12px;color:var(--muted);}
+
+/* ── FLOW VISUAL ── */
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;align-items:flex-start;gap:20px;position:relative;}
+.flow-step::before{content:'';position:absolute;left:19px;top:40px;bottom:-20px;width:1px;background:var(--border);}
+.flow-step:last-child::before{display:none;}
+.flow-num{width:40px;height:40px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:13px;color:var(--muted);flex-shrink:0;}
+.flow-step.active .flow-num{border-color:var(--accent2);color:var(--accent2);}
+.flow-info{padding:8px 0 28px;}
+.flow-info strong{display:block;font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.flow-info span{font-size:13px;color:var(--muted);}
+
+/* ── STATS BAND ── */
+.stats-band{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 40px;}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+.stat-item{background:var(--card);padding:32px;text-align:center;}
+.stat-num{font-family:var(--font-head);font-size:52px;letter-spacing:1px;color:var(--text);line-height:1;}
+.stat-num span{color:var(--accent);}
+.stat-desc{font-size:12px;color:var(--muted);letter-spacing:.5px;margin-top:6px;}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);max-width:800px;}
+.pricing-card{background:var(--bg);padding:40px 36px;position:relative;}
+.pricing-card.featured{background:var(--surface);}
+.pricing-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;}
+.pricing-name{font-family:var(--font-head);font-size:32px;letter-spacing:1px;margin-bottom:8px;}
+.pricing-price{font-family:var(--font-head);font-size:56px;letter-spacing:1px;color:var(--text);line-height:1;}
+.pricing-price sup{font-size:22px;vertical-align:top;margin-top:10px;display:inline-block;font-family:var(--font-body);font-weight:300;}
+.pricing-price sub{font-size:14px;font-family:var(--font-body);font-weight:400;color:var(--muted);}
+.pricing-desc{font-size:13px;color:var(--muted);margin:12px 0 28px;line-height:1.6;}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+.pricing-features li{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:10px;}
+.pricing-features li::before{content:'—';color:var(--accent);font-size:11px;}
+.pricing-features li.active{color:var(--text);}
+
+/* ── FOOTER ── */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 40px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.footer-brand .nav-logo{margin-bottom:10px;}
+.footer-brand p{font-size:12px;color:var(--muted);max-width:260px;line-height:1.7;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--text);}
+.footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:12px;color:var(--muted);}
+.footer-bottom a{color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-bottom a:hover{color:var(--text);}
+
+/* ── ANIMATIONS ── */
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards;}
+.fade-up:nth-child(1){animation-delay:.1s;}
+.fade-up:nth-child(2){animation-delay:.2s;}
+.fade-up:nth-child(3){animation-delay:.3s;}
+.fade-up:nth-child(4){animation-delay:.4s;}
+
+/* ── DIVIDER LINE ── */
+.ruled{width:100%;height:1px;background:var(--border);max-width:1200px;margin:0 auto;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .hero{padding:100px 20px 60px;}
+  .hero-grid{grid-template-columns:1fr;gap:48px;}
+  .mock-ui{display:none;}
+  .section{padding:64px 20px;}
+  .features-grid{grid-template-columns:1fr;}
+  .xero-section{padding:64px 20px;}
+  .xero-inner{grid-template-columns:1fr;gap:48px;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .pricing-grid{grid-template-columns:1fr;}
+  footer{padding:40px 20px;}
+  .footer-inner{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AIM<span>Automotive Invoice Manager</span></div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#xero">Xero</a>
+    <a href="#pricing">Pricing</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+  <a href="#pricing" class="nav-cta">Get AIM</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow fade-up">Workshop Management Software</div>
+      <h1 class="hero-title fade-up">RUN YOUR<br/><em>WORKSHOP</em><br/>SMARTER</h1>
+      <p class="hero-sub fade-up">AIM is a desktop invoicing and workshop management app built specifically for automotive workshops in New Zealand. Fast, offline-first, and Xero-connected.</p>
+      <div class="hero-actions fade-up">
+        <a href="#pricing" class="btn-primary">Download AIM (Coming Soon)</a>
+        <a href="#features" class="btn-ghost">See Features</a>
+      </div>
+    </div>
+
+    <!-- MOCK UI -->
+    <div class="mock-ui fade-up">
+      <div class="mock-topbar">
+        <div class="mock-dot" style="background:#e84343;"></div>
+        <div class="mock-dot" style="background:#f5a623;margin-left:4px;"></div>
+        <div class="mock-dot" style="background:#3dd68c;margin-left:4px;"></div>
+        <div class="mock-title">AIM</div>
+        <div class="xero-chip" style="margin-left:auto;">
+          <div class="xero-chip-dot"></div>XERO CONNECTED
+        </div>
+      </div>
+      <div class="mock-body">
+        <div class="mock-sidebar">
+          <div class="mock-nav-item active"><div class="mock-nav-dot"></div>Invoices</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Quotes</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Customers</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Vehicles</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Bills</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Reports</div>
+        </div>
+        <div class="mock-content">
+          <div class="mock-stat-row">
+            <div class="mock-stat">
+              <div class="mock-stat-label">This Month</div>
+              <div class="mock-stat-val">$24.8k</div>
+            </div>
+            <div class="mock-stat green">
+              <div class="mock-stat-label">Collected</div>
+              <div class="mock-stat-val">$19.2k</div>
+            </div>
+            <div class="mock-stat red">
+              <div class="mock-stat-label">Overdue</div>
+              <div class="mock-stat-val">$3.1k</div>
+            </div>
+          </div>
+          <div class="mock-table">
+            <div class="mock-table-head">
+              <span>Customer</span>
+              <span>Amount</span>
+              <span>Due</span>
+              <span>Status</span>
+            </div>
+            <div class="mock-row">
+              <span>Durandal</span>
+              <span>$1,240</span>
+              <span>14 Jun</span>
+              <span><div class="mock-badge paid">PAID</div></span>
+            </div>
+            <div class="mock-row">
+              <span>Tau Ceti Fleets</span>
+              <span>$4,890</span>
+              <span>21 Jun</span>
+              <span><div class="mock-badge approved">APPROVED</div></span>
+            </div>
+            <div class="mock-row">
+              <span>Brown, D</span>
+              <span>$680</span>
+              <span>08 Jun</span>
+              <span><div class="mock-badge overdue">OVERDUE</div></span>
+            </div>
+            <div class="mock-row">
+              <span>IO Cabs</span>
+              <span>$2,100</span>
+              <span>28 Jun</span>
+              <span><div class="mock-badge draft">DRAFT</div></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-desc">Offline capable</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">NZ<span>$</span></div>
+      <div class="stat-desc">Built for NZ GST & tax</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0<span>s</span></div>
+      <div class="stat-desc">Server dependency</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1<span>×</span></div>
+      <div class="stat-desc">One-time purchase</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">What AIM Does</div>
+  <h2 class="section-title">KEEPING IT SIMPLE.<br/>DOESN'T NEED TO BE COMPLICATED.</h2>
+  <p class="section-sub">AIM runs locally on your desktop — no subscriptions, no internet required, no data sent anywhere unless you choose Xero sync.</p>
+
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">📄</div>
+      <div class="feature-title">Invoices & Quotes</div>
+      <div class="feature-body">Create professional invoices and quotes with line items, GST, payment terms, and your business branding. Convert quotes to invoices in one click.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🚗</div>
+      <div class="feature-title">Vehicle Records</div>
+      <div class="feature-body">Track every vehicle by rego, make, model, VIN, and WOF/service due dates. Full job history per vehicle, linked to the customer record.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">👤</div>
+      <div class="feature-title">Customer Management</div>
+      <div class="feature-body">Maintain a full customer database with contact details, payment terms, and complete invoice and vehicle history at a glance.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🧾</div>
+      <div class="feature-title">Bills & Suppliers</div>
+      <div class="feature-body">Record supplier bills with per-line account coding for COGS or overheads. Track what you owe and when it's due.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Reports</div>
+      <div class="feature-body">Profit & loss, GST return, receivables, and payables — all anchored to the NZ financial year. Export or print at any time.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📧</div>
+      <div class="feature-title">Email & PDF</div>
+      <div class="feature-body">Send invoices and quotes directly from the app via your own email account. Professional PDF generation built in, no printer required.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📸</div>
+      <div class="feature-title">Job Photos</div>
+      <div class="feature-body">Attach photos directly to invoices and bills. Document vehicle condition, completed work, and parts for your records.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">💾</div>
+      <div class="feature-title">Local & Backed Up</div>
+      <div class="feature-body">All data stays on your machine. Auto-backup to a folder of your choice — shared drive, USB, or cloud-synced folder.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">👥</div>
+      <div class="feature-title">Multi-User</div>
+      <div class="feature-body">Staff and admin roles with separate logins. Admins control approvals, deletions, and financial visibility. Staff see what they need to.</div>
+    </div>
+  </div>
+</section>
+
+<div class="ruled"></div>
+
+<!-- XERO SECTION -->
+<div class="xero-section" id="xero">
+  <div class="xero-inner">
+    <div>
+      <div class="xero-logo-row">
+        <div class="xero-logo-box">XERO</div>
+        <div class="plus">+</div>
+        <div class="aim-logo-box">AIM</div>
+      </div>
+      <div class="section-label">Xero Integration</div>
+      <h2 class="section-title">Your books.<br/>Always in sync.</h2>
+      <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;">Connect AIM to your Xero account and your invoices, contacts, and payment status stay in sync — automatically. No double entry, no exports, no hassle.</p>
+      <div class="xero-features">
+        <div class="xero-feature">
+          <div class="xero-feature-check">✓</div>
+          <div class="xero-feature-text">
+            <strong>Push invoices to Xero</strong>
+            <span>Approved invoices sync to Xero as authorised — line items, GST, and account codes included.</span>
+          </div>
+        </div>
+        <div class="xero-feature">
+          <div class="xero-feature-check">✓</div>
+          <div class="xero-feature-text">
+            <strong>Pull payment status</strong>
+            <span>When Xero marks an invoice as paid, AIM updates automatically. No manual reconciliation.</span>
+          </div>
+        </div>
+        <div class="xero-feature">
+          <div class="xero-feature-check">✓</div>
+          <div class="xero-feature-text">
+            <strong>Sync contacts both ways</strong>
+            <span>Customers created in AIM push to Xero. Xero contacts import back into AIM.</span>
+          </div>
+        </div>
+        <div class="xero-feature">
+          <div class="xero-feature-check">✓</div>
+          <div class="xero-feature-text">
+            <strong>Import your chart of accounts</strong>
+            <span>Pull your exact Xero account codes so every line item maps correctly — no guessing.</span>
+          </div>
+        </div>
+        <div class="xero-feature">
+          <div class="xero-feature-check">✓</div>
+          <div class="xero-feature-text">
+            <strong>Push supplier bills</strong>
+            <span>Bills with per-line COGS or expense coding push directly to Xero as accounts payable.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="flow">
+        <div class="flow-step active">
+          <div class="flow-num">01</div>
+          <div class="flow-info">
+            <strong>Connect your Xero account</strong>
+            <span>OAuth 2.0 login — AIM never sees your Xero password. Secure token stored locally on your machine.</span>
+          </div>
+        </div>
+        <div class="flow-step active">
+          <div class="flow-num">02</div>
+          <div class="flow-info">
+            <strong>Import your chart of accounts</strong>
+            <span>One click pulls your Xero account codes into AIM so line items map to the right accounts.</span>
+          </div>
+        </div>
+        <div class="flow-step active">
+          <div class="flow-num">03</div>
+          <div class="flow-info">
+            <strong>Work as normal</strong>
+            <span>Invoice your customers in AIM. When you approve an invoice, push it to Xero instantly.</span>
+          </div>
+        </div>
+        <div class="flow-step active">
+          <div class="flow-num">04</div>
+          <div class="flow-info">
+            <strong>Sync payment status</strong>
+            <span>Hit Sync from Xero and any invoices paid in Xero are automatically marked paid in AIM.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Simple.<br/>One-time.</h2>
+  <p class="section-sub">No monthly fees. No per-user charges. Buy once, own it.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tag">Starter</div>
+      <div class="pricing-name">AIM Solo</div>
+      <div class="pricing-price"><sup>$</sup>299<sub> NZD</sub></div>
+      <div class="pricing-desc">Perfect for sole traders and owner-operators.</div>
+      <ul class="pricing-features">
+        <li class="active">Invoices, quotes, bills</li>
+        <li class="active">Vehicle & customer records</li>
+        <li class="active">PDF & email</li>
+        <li class="active">Local backup</li>
+        <li class="active">Xero integration</li>
+        <li class="active"><s>Multi-user (admin + staff)</s></li>
+      </ul>
+      <a href="mailto:autoinvoicemanager@gmail.com" class="btn-ghost" style="width:100%;text-align:center;">Coming Soon</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-tag" style="color:var(--accent2);">Most Popular</div>
+      <div class="pricing-name">AIM Workshop</div>
+      <div class="pricing-price"><sup>$</sup>499<sub> NZD</sub></div>
+      <div class="pricing-desc">For workshops with staff.</div>
+      <ul class="pricing-features">
+        <li class="active">Invoices, quotes, bills</li>
+        <li class="active">Vehicle & customer records</li>
+        <li class="active">PDF & email</li>
+        <li class="active">Local backup</li>
+        <li class="active">Xero integration</li>
+        <li class="active">Multi-user (admin + staff)</li>
+      </ul>
+      <a href="mailto:autoinvoicemanager@gmail.com" class="btn-primary" style="width:100%;text-align:center;">Coming Soon</a>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:20px;">All prices exclude GST.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">AIM<span>Automotive Invoice Manager</span></div>
+      <p>Desktop workshop management software built for New Zealand automotive businesses.</p>
+    </div>
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:14px;">Product</div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#xero">Xero Integration</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:14px;">Legal</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:someone@example.com">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 AIM Workshop Software. All rights reserved.</p>
+    <p>Made in New Zealand 🇳🇿</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — AIM Workshop Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0f0f0f;--surface:#181818;--card:#1f1f1f;--border:#2a2a2a;
+  --accent:#b91c1c;--accent2:#059669;--text:#f0ede8;--muted:#6b7280;
+  --font-head:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(15,15,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-head);font-size:28px;letter-spacing:2px;color:var(--accent);text-decoration:none;}
+.nav-logo span{display:block;font-family:var(--font-body);font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-top:-4px;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s;}
+.nav-back:hover{color:var(--text);}
+
+.page-hero{padding:140px 40px 64px;border-bottom:1px solid var(--border);}
+.page-hero-inner{max-width:800px;margin:0 auto;}
+.page-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;}
+.page-title{font-family:var(--font-head);font-size:clamp(48px,7vw,80px);letter-spacing:1px;line-height:1;margin-bottom:20px;}
+.page-meta{font-size:13px;color:var(--muted);}
+.page-meta span{color:var(--text);}
+
+.content{max-width:800px;margin:0 auto;padding:64px 40px 100px;}
+
+.toc{background:var(--surface);border:1px solid var(--border);padding:28px 32px;margin-bottom:56px;}
+.toc-title{font-family:var(--font-mono);font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;}
+.toc ol{list-style:none;display:flex;flex-direction:column;gap:8px;counter-reset:toc;}
+.toc ol li{counter-increment:toc;display:flex;align-items:baseline;gap:10px;}
+.toc ol li::before{content:counter(toc,decimal-leading-zero);font-family:var(--font-mono);font-size:11px;color:var(--accent);flex-shrink:0;}
+.toc ol li a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s;}
+.toc ol li a:hover{color:var(--text);}
+
+.policy-section{margin-bottom:56px;scroll-margin-top:100px;}
+.policy-section h2{font-family:var(--font-head);font-size:32px;letter-spacing:1px;color:var(--text);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.policy-section h3{font-size:14px;font-weight:600;color:var(--text);margin:24px 0 10px;text-transform:uppercase;letter-spacing:.5px;}
+.policy-section p{font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.8;}
+.policy-section p:last-child{margin-bottom:0;}
+.policy-section ul,.policy-section ol{margin:12px 0 16px 0;display:flex;flex-direction:column;gap:8px;}
+.policy-section ul li,.policy-section ol li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;}
+.policy-section ul li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:12px;}
+.policy-section ol{counter-reset:ol-count;}
+.policy-section ol li{counter-increment:ol-count;}
+.policy-section ol li::before{content:counter(ol-count)'.';color:var(--accent2);font-family:var(--font-mono);font-size:11px;}
+
+.highlight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:20px 0;}
+.highlight-box p{font-size:13px;color:var(--muted);margin:0;line-height:1.7;}
+.highlight-box strong{color:var(--text);}
+
+.xero-box{background:rgba(5,150,105,.05);border:1px solid rgba(5,150,105,.2);padding:20px 24px;margin:20px 0;}
+.xero-box-title{font-family:var(--font-mono);font-size:10px;letter-spacing:3px;color:#34d399;text-transform:uppercase;margin-bottom:10px;}
+.xero-box p{font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.7;}
+.xero-box p:last-child{margin:0;}
+
+.contact-box{background:var(--surface);border:1px solid var(--border);padding:28px 32px;margin-top:48px;}
+.contact-box-title{font-family:var(--font-head);font-size:24px;letter-spacing:1px;margin-bottom:16px;}
+.contact-box p{font-size:13px;color:var(--muted);margin-bottom:8px;}
+.contact-box a{color:var(--accent2);text-decoration:none;}
+.contact-box a:hover{text-decoration:underline;}
+
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-size:12px;color:var(--muted);}
+footer a{color:var(--muted);text-decoration:none;transition:color .2s;margin:0 12px;}
+footer a:hover{color:var(--text);}
+
+@media(max-width:700px){
+  nav{padding:14px 20px;}
+  .page-hero{padding:110px 20px 48px;}
+  .content{padding:48px 20px 80px;}
+  footer{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">AIM<span>Automotive Invoice Manager</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Legal</div>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Last updated: <span>1 June 2025</span> &nbsp;·&nbsp; Effective: <span>1 June 2025</span></p>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="highlight-box">
+    <p><strong>Plain English summary:</strong> AIM is a locally installed desktop application. Your business data stays on your own computer. We do not collect, store, or sell your data. The only external connection AIM makes is to Xero — and only when you explicitly connect and initiate a sync.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#who">Who We Are</a></li>
+      <li><a href="#data-collect">What Data AIM Collects</a></li>
+      <li><a href="#data-local">Where Your Data Is Stored</a></li>
+      <li><a href="#xero">Xero Integration & Data Sharing</a></li>
+      <li><a href="#oauth">OAuth 2.0 Authentication</a></li>
+      <li><a href="#no-collect">What We Do Not Collect</a></li>
+      <li><a href="#third-party">Third-Party Services</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#retention">Data Retention & Deletion</a></li>
+      <li><a href="#rights">Your Rights</a></li>
+      <li><a href="#children">Children's Privacy</a></li>
+      <li><a href="#changes">Changes to This Policy</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="policy-section" id="who">
+    <h2>1. Who We Are</h2>
+    <p>AIM Workshop Software ("AIM", "we", "us", "our") is a New Zealand software product. AIM is a locally installed desktop application designed for automotive workshops to manage invoices, quotes, customers, vehicles, bills, and accounting integration.</p>
+    <p>For privacy-related enquiries, please contact us using the details at the bottom of this policy.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="policy-section" id="data-collect">
+    <h2>2. What Data AIM Collects</h2>
+    <p>AIM is an offline-first desktop application. The data you enter into AIM is entered by you and stored locally on your computer. This includes:</p>
+    <h3>Business data you enter</h3>
+    <ul>
+      <li>Customer names, contact details, and addresses</li>
+      <li>Vehicle registrations, makes, models, and service history</li>
+      <li>Invoice, quote, and bill details including line items and amounts</li>
+      <li>Supplier names and contact information</li>
+      <li>Your business name, GST number, NZBN, and contact details entered in Settings</li>
+      <li>Job photos attached to invoices or bills</li>
+      <li>User accounts and credentials created within the app</li>
+    </ul>
+    <h3>Application settings</h3>
+    <ul>
+      <li>Email (SMTP) configuration you enter to send invoices</li>
+      <li>Backup folder preferences</li>
+      <li>Xero OAuth tokens (stored encrypted on your device — see Section 4)</li>
+      <li>Xero account code preferences</li>
+    </ul>
+    <p>We — the software developer — have no access to any of this data. It never leaves your machine unless you explicitly use the Xero integration or the local backup feature.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="policy-section" id="data-local">
+    <h2>3. Where Your Data Is Stored</h2>
+    <p>All AIM data is stored locally on the computer on which the software is installed:</p>
+    <ul>
+      <li><strong>Invoice, customer, vehicle, bill, and settings data</strong> is stored in your browser's localStorage within the Electron application sandbox on your device.</li>
+      <li><strong>Photos</strong> are stored in IndexedDB on your device.</li>
+      <li><strong>Xero tokens</strong> are stored in an encrypted file on your device using electron-store, accessible only by the AIM application.</li>
+      <li><strong>Backup files</strong> are written to a folder you choose on your device or network.</li>
+    </ul>
+    <p>AIM does not operate any servers, databases, or cloud storage that holds your business data. We have no ability to access, view, or recover your data.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="policy-section" id="xero">
+    <h2>4. Xero Integration & Data Sharing</h2>
+    <p>AIM optionally integrates with Xero, a third-party cloud accounting platform operated by Xero Limited. The Xero integration is entirely opt-in. If you do not connect Xero, no data is ever transmitted externally.</p>
+
+    <div class="xero-box">
+      <div class="xero-box-title">When you connect Xero, AIM will:</div>
+      <p>Send invoice data (customer name, line item descriptions, amounts, GST, account codes, due dates) to your Xero organisation when you explicitly push an invoice.</p>
+      <p>Send customer contact details (name, email, phone, address) to your Xero organisation when you create or push a customer contact.</p>
+      <p>Send supplier bill data (supplier name, line items, amounts, account codes) to your Xero organisation when you push a bill.</p>
+      <p>Retrieve invoice payment status from your Xero organisation when you initiate a sync.</p>
+      <p>Retrieve your Xero chart of accounts when you click "Refresh Accounts".</p>
+      <p>Retrieve your Xero contact list when you initiate a contact sync.</p>
+    </div>
+
+    <h3>What Xero receives</h3>
+    <p>Data sent to Xero is transmitted directly from your device to the Xero API using your authorised OAuth token. AIM does not route this data through any intermediate server operated by us.</p>
+
+    <h3>Xero's privacy obligations</h3>
+    <p>Data transmitted to Xero is subject to Xero's own Privacy Policy and Terms of Service. We encourage you to review Xero's privacy policy at <a href="https://www.xero.com/nz/about/terms/privacy/" style="color:var(--accent2);" target="_blank" rel="noopener noreferrer">xero.com/nz/about/terms/privacy</a>.</p>
+
+    <h3>Data we never send to Xero</h3>
+    <ul>
+      <li>Vehicle registration numbers or vehicle records</li>
+      <li>Job photos</li>
+      <li>App user accounts or passwords</li>
+      <li>Your SMTP email credentials</li>
+      <li>Notes that are not part of a pushed invoice or bill</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="policy-section" id="oauth">
+    <h2>5. OAuth 2.0 Authentication</h2>
+    <p>AIM connects to Xero using the OAuth 2.0 Authorization Code flow with PKCE (Proof Key for Code Exchange). This is the industry-standard secure method for desktop applications to connect to third-party services.</p>
+    <h3>How it works</h3>
+    <ol>
+      <li>When you click "Connect to Xero", AIM opens your default web browser to the Xero login page.</li>
+      <li>You log in to Xero directly in your browser. AIM never sees your Xero username or password.</li>
+      <li>Xero asks you to authorise AIM to access your organisation. You review and approve the permissions.</li>
+      <li>Xero redirects back to AIM with a temporary authorisation code.</li>
+      <li>AIM exchanges this code for access and refresh tokens using PKCE — no client secret is required or transmitted.</li>
+      <li>The resulting tokens are stored encrypted on your device and are used for all subsequent API calls.</li>
+    </ol>
+    <h3>Token storage</h3>
+    <p>OAuth tokens are stored in an encrypted file on your local device using electron-store. The encryption key is local to your installation. Tokens are never transmitted to us or any third party other than Xero's API endpoints during authorised sync operations.</p>
+    <h3>Revoking access</h3>
+    <p>You can disconnect Xero at any time from Settings → Integrations → Disconnect. This deletes the stored tokens from your device. You can also revoke AIM's access directly within your Xero account under Connected Apps.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="policy-section" id="no-collect">
+    <h2>6. What We Do Not Collect</h2>
+    <p>AIM does not collect, transmit, or have access to any of the following:</p>
+    <ul>
+      <li>Analytics, usage statistics, or crash reports</li>
+      <li>Telemetry of any kind</li>
+      <li>Your customers' personal information</li>
+      <li>Your financial data, invoice amounts, or business revenue</li>
+      <li>Your Xero login credentials</li>
+      <li>Your SMTP email credentials</li>
+      <li>Device identifiers, IP addresses, or location data</li>
+      <li>Any data through advertising networks or tracking pixels</li>
+    </ul>
+    <p>AIM makes no outbound network connections of any kind except when you explicitly use the Xero integration (connecting, syncing, or refreshing accounts) or when the app sends email via your configured SMTP server.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="policy-section" id="third-party">
+    <h2>7. Third-Party Services</h2>
+    <h3>Xero Limited</h3>
+    <p>When the Xero integration is enabled, data is transmitted to Xero's API infrastructure. Xero is a New Zealand-headquartered company subject to New Zealand and applicable international privacy law. See their privacy policy for details of how they handle your data.</p>
+    <h3>Your email provider (SMTP)</h3>
+    <p>When you send invoices or quotes by email, AIM connects to the SMTP server you configure (e.g. Gmail, Office 365, or a custom mail server) to deliver the email. The content of the email — including the PDF attachment — is transmitted to that mail provider. This is standard email delivery behaviour. AIM does not retain copies of sent emails.</p>
+    <h3>Google Fonts</h3>
+    <p>The AIM website (not the application) loads fonts from Google Fonts. Google may log font requests in accordance with their privacy policy. The AIM desktop application does not connect to Google Fonts.</p>
+    <h3>No other third parties</h3>
+    <p>AIM does not use advertising networks, analytics platforms, social media pixels, or any other third-party tracking services in the application or on this website.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="policy-section" id="security">
+    <h2>8. Security</h2>
+    <p>We take reasonable steps to ensure AIM handles data securely:</p>
+    <ul>
+      <li>All communication with Xero's API uses HTTPS/TLS encryption in transit.</li>
+      <li>OAuth tokens are stored encrypted on your local device using electron-store with AES encryption.</li>
+      <li>AIM uses PKCE for OAuth, meaning no client secret is embedded in or transmitted by the application.</li>
+      <li>SMTP credentials you enter are stored in your device's local application storage and are only used to send email at your direction.</li>
+      <li>AIM does not operate any servers, so there is no server-side data breach risk for your business data.</li>
+    </ul>
+    <p>The security of your data ultimately depends on the security of the computer on which AIM is installed. We recommend standard device security practices: strong login passwords, up-to-date operating system, and regular backups.</p>
+    <h3>Backup security</h3>
+    <p>If you use the auto-backup feature, backup files are written to a folder you specify. If that folder is cloud-synced (e.g. OneDrive, Google Drive, Dropbox), the security of those backups is governed by the relevant cloud provider's terms. Backup files are in JSON format and contain all your business data — store them in a secure, access-controlled location.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="policy-section" id="retention">
+    <h2>9. Data Retention & Deletion</h2>
+    <p>Because AIM stores all data locally on your device, you are in full control of your data retention.</p>
+    <ul>
+      <li>To delete all AIM data, uninstall the application and delete the associated application data folder from your operating system.</li>
+      <li>To remove Xero connection data specifically, go to Settings → Integrations → Disconnect, which deletes stored OAuth tokens from your device.</li>
+      <li>Data previously pushed to Xero must be deleted within Xero — AIM cannot delete data from Xero on your behalf.</li>
+      <li>Backup files you have created must be deleted manually from wherever you stored them.</li>
+    </ul>
+    <p>We hold no copies of your data and therefore cannot delete data on your behalf. If you contact us requesting data deletion, we can confirm we hold nothing, but we cannot action deletion of data that resides on your own device.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="policy-section" id="rights">
+    <h2>10. Your Rights</h2>
+    <p>Under the New Zealand Privacy Act 2020, you have the right to:</p>
+    <ul>
+      <li>Access personal information we hold about you — noting that we hold no personal information about you or your customers, as all data is stored on your device.</li>
+      <li>Request correction of any personal information we hold — again, we hold none.</li>
+      <li>Complain to the Office of the Privacy Commissioner if you believe your privacy rights have been breached.</li>
+    </ul>
+    <p>If you are located in the European Economic Area, United Kingdom, or Australia, you may have additional rights under GDPR, UK GDPR, or the Australian Privacy Act respectively. As we hold no personal data about you, these rights primarily apply to any data transmitted to Xero — please refer to Xero's privacy policy and their data subject request process.</p>
+    <p>To make a privacy request or complaint, contact us using the details in Section 13.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="policy-section" id="children">
+    <h2>11. Children's Privacy</h2>
+    <p>AIM is a business application intended for use by adults operating automotive workshop businesses. We do not knowingly collect or process personal information from children under the age of 16. AIM is not directed at children.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="policy-section" id="changes">
+    <h2>12. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time, for example if AIM adds new features that affect how data is handled. When we make material changes, we will update the "Last updated" date at the top of this page and, where appropriate, notify users via the application or our website.</p>
+    <p>Continued use of AIM after changes are posted constitutes your acceptance of the updated policy. We encourage you to review this policy periodically.</p>
+    <p>Previous versions of this policy are available on request.</p>
+  </div>
+
+  <!-- 13 -->
+  <div class="policy-section" id="contact">
+    <h2>13. Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or AIM's data handling practices, please contact us:</p>
+    <div class="contact-box">
+      <div class="contact-box-title">AIM Workshop Software</div>
+      <p>New Zealand</p>
+      <p>Email: <a href="mailto:autoinvoicemanager@gmail.com">autoinvoicemanager@gmail.com</a></p>
+      <p style="margin-top:16px;font-size:12px;color:var(--muted);">We aim to respond to all privacy enquiries within 5 working days.</p>
+    </div>
+
+    <div class="highlight-box" style="margin-top:24px;">
+      <p>If you have a complaint about how we have handled your personal information, you may also contact the <strong>Office of the New Zealand Privacy Commissioner</strong> at <a href="https://www.privacy.org.nz" style="color:var(--accent2);" target="_blank" rel="noopener noreferrer">privacy.org.nz</a> or by phone on 0800 803 909.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:autoinvoicemanager@gmail.com">Contact</a>
+  </p>
+  <p style="margin-top:12px;">© 2025 AIM Workshop Software · New Zealand</p>
+</footer>
+
+</body>
+</html>
