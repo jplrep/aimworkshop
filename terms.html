@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Service — AIM Workshop Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0f0f0f;--surface:#181818;--card:#1f1f1f;--border:#2a2a2a;
+  --accent:#b91c1c;--accent2:#059669;--text:#f0ede8;--muted:#6b7280;
+  --font-head:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(15,15,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-head);font-size:28px;letter-spacing:2px;color:var(--accent);text-decoration:none;}
+.nav-logo span{display:block;font-family:var(--font-body);font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-top:-4px;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s;}
+.nav-back:hover{color:var(--text);}
+
+.page-hero{padding:140px 40px 64px;border-bottom:1px solid var(--border);}
+.page-hero-inner{max-width:800px;margin:0 auto;}
+.page-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;}
+.page-title{font-family:var(--font-head);font-size:clamp(48px,7vw,80px);letter-spacing:1px;line-height:1;margin-bottom:20px;}
+.page-meta{font-size:13px;color:var(--muted);}
+.page-meta span{color:var(--text);}
+
+.content{max-width:800px;margin:0 auto;padding:64px 40px 100px;}
+
+.toc{background:var(--surface);border:1px solid var(--border);padding:28px 32px;margin-bottom:56px;}
+.toc-title{font-family:var(--font-mono);font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;}
+.toc ol{list-style:none;display:flex;flex-direction:column;gap:8px;counter-reset:toc;}
+.toc ol li{counter-increment:toc;display:flex;align-items:baseline;gap:10px;}
+.toc ol li::before{content:counter(toc,decimal-leading-zero);font-family:var(--font-mono);font-size:11px;color:var(--accent);flex-shrink:0;}
+.toc ol li a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s;}
+.toc ol li a:hover{color:var(--text);}
+
+.policy-section{margin-bottom:56px;scroll-margin-top:100px;}
+.policy-section h2{font-family:var(--font-head);font-size:32px;letter-spacing:1px;color:var(--text);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.policy-section h3{font-size:14px;font-weight:600;color:var(--text);margin:24px 0 10px;text-transform:uppercase;letter-spacing:.5px;}
+.policy-section p{font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.8;}
+.policy-section p:last-child{margin-bottom:0;}
+.policy-section ul,.policy-section ol{margin:12px 0 16px 0;display:flex;flex-direction:column;gap:8px;}
+.policy-section ul li,.policy-section ol li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;}
+.policy-section ul li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:12px;}
+.policy-section ol{counter-reset:ol-count;}
+.policy-section ol li{counter-increment:ol-count;}
+.policy-section ol li::before{content:counter(ol-count)'.';color:var(--accent2);font-family:var(--font-mono);font-size:11px;}
+
+.highlight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:20px 0;}
+.highlight-box p{font-size:13px;color:var(--muted);margin:0;line-height:1.7;}
+.highlight-box strong{color:var(--text);}
+
+.warning-box{background:rgba(185,28,28,.05);border:1px solid rgba(185,28,28,.2);border-left:3px solid var(--accent);padding:20px 24px;margin:20px 0;}
+.warning-box p{font-size:13px;color:var(--muted);margin:0;line-height:1.7;}
+.warning-box strong{color:var(--text);}
+
+.xero-box{background:rgba(5,150,105,.05);border:1px solid rgba(5,150,105,.2);padding:20px 24px;margin:20px 0;}
+.xero-box-title{font-family:var(--font-mono);font-size:10px;letter-spacing:3px;color:#34d399;text-transform:uppercase;margin-bottom:10px;}
+.xero-box p{font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.7;}
+.xero-box p:last-child{margin:0;}
+
+.contact-box{background:var(--surface);border:1px solid var(--border);padding:28px 32px;margin-top:48px;}
+.contact-box-title{font-family:var(--font-head);font-size:24px;letter-spacing:1px;margin-bottom:16px;}
+.contact-box p{font-size:13px;color:var(--muted);margin-bottom:8px;}
+.contact-box a{color:var(--accent2);text-decoration:none;}
+.contact-box a:hover{text-decoration:underline;}
+
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-size:12px;color:var(--muted);}
+footer a{color:var(--muted);text-decoration:none;transition:color .2s;margin:0 12px;}
+footer a:hover{color:var(--text);}
+
+@media(max-width:700px){
+  nav{padding:14px 20px;}
+  .page-hero{padding:110px 20px 48px;}
+  .content{padding:48px 20px 80px;}
+  footer{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">AIM<span>Automotive Invoice Manager</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Legal</div>
+    <h1 class="page-title">Terms of Service</h1>
+    <p class="page-meta">Last updated: <span>29 May 2026</span> &nbsp;·&nbsp; Effective: <span>29 May 2026</span></p>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="highlight-box">
+    <p><strong>Plain English summary:</strong> AIM is a desktop application you install and own. You keep your data. We don't host your data or charge recurring fees for the core application. By downloading and using AIM, you agree to these terms.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#acceptance">Acceptance of Terms</a></li>
+      <li><a href="#description">Description of AIM</a></li>
+      <li><a href="#license">Licence to Use</a></li>
+      <li><a href="#account">Your Responsibilities</a></li>
+      <li><a href="#xero">Xero Integration</a></li>
+      <li><a href="#data">Your Data</a></li>
+      <li><a href="#ip">Intellectual Property</a></li>
+      <li><a href="#prohibited">Prohibited Use</a></li>
+      <li><a href="#disclaimer">Disclaimers & Warranties</a></li>
+      <li><a href="#liability">Limitation of Liability</a></li>
+      <li><a href="#updates">Updates & Changes to AIM</a></li>
+      <li><a href="#termination">Termination</a></li>
+      <li><a href="#governing">Governing Law</a></li>
+      <li><a href="#changes">Changes to These Terms</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="policy-section" id="acceptance">
+    <h2>1. Acceptance of Terms</h2>
+    <p>By downloading, installing, or using AIM Workshop Software ("AIM"), you ("the user") agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not install or use AIM.</p>
+    <p>These Terms constitute a legally binding agreement between you and AIM Workshop Software ("we", "us", "our"), a New Zealand software product. If you are using AIM on behalf of a business, you represent that you have authority to bind that business to these Terms.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="policy-section" id="description">
+    <h2>2. Description of AIM</h2>
+    <p>AIM is a locally installed desktop application designed for automotive workshop businesses to manage invoices, quotes, customers, vehicles, bills, and accounting integrations. AIM runs entirely on your own computer and does not require an internet connection for core functionality.</p>
+    <p>AIM optionally integrates with Xero, a third-party cloud accounting platform, when you choose to connect it. All other functionality operates offline on your device.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="policy-section" id="license">
+    <h2>3. Licence to Use</h2>
+    <p>Subject to these Terms, we grant you a personal, non-exclusive, non-transferable, revocable licence to install and use AIM on computers owned or controlled by you, for your internal business purposes.</p>
+    <h3>This licence does not permit you to:</h3>
+    <ul>
+      <li>Copy, modify, distribute, sell, or sublicence the AIM application or its source code</li>
+      <li>Reverse engineer, decompile, or disassemble the application</li>
+      <li>Remove or alter any proprietary notices or labels on AIM</li>
+      <li>Use AIM to provide a commercial hosted service or SaaS offering to third parties</li>
+      <li>Use AIM in any way that violates applicable law or these Terms</li>
+    </ul>
+    <p>All rights not expressly granted are reserved by AIM Workshop Software.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="policy-section" id="account">
+    <h2>4. Your Responsibilities</h2>
+    <p>As a user of AIM, you are responsible for:</p>
+    <ul>
+      <li>Ensuring AIM is installed and operated on a secure, adequately maintained computer</li>
+      <li>Maintaining regular backups of your AIM data — we have no ability to recover your data if it is lost</li>
+      <li>Securing access to the computer on which AIM is installed, including any user accounts within AIM</li>
+      <li>Ensuring the accuracy and legality of the data you enter into AIM</li>
+      <li>Ensuring your use of AIM complies with all applicable laws, including GST, tax, and consumer law obligations in your jurisdiction</li>
+      <li>Configuring any SMTP or email provider settings correctly, including complying with your email provider's terms of service</li>
+    </ul>
+    <p>AIM is a tool to help you run your business. It does not provide tax, legal, or accounting advice. You remain solely responsible for the accuracy of financial records and compliance with applicable regulations.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="policy-section" id="xero">
+    <h2>5. Xero Integration</h2>
+    <p>AIM optionally integrates with Xero via OAuth 2.0. Use of the Xero integration is subject to both these Terms and Xero's own Terms of Service and Privacy Policy.</p>
+
+    <div class="xero-box">
+      <div class="xero-box-title">Important — Xero integration conditions</div>
+      <p>By connecting AIM to Xero, you authorise AIM to send and receive data from your Xero organisation as described in our Privacy Policy. You must have a valid Xero subscription and comply with Xero's terms to use this feature.</p>
+      <p>AIM is not affiliated with, endorsed by, or an official partner of Xero Limited. The Xero wordmark and logo are trademarks of Xero Limited.</p>
+    </div>
+
+    <p>We are not responsible for any disruptions to, changes in, or discontinuation of the Xero API or Xero's service. If Xero changes its API or terms in a way that affects AIM's integration, we will endeavour to update AIM accordingly but cannot guarantee continued compatibility.</p>
+    <p>You can disconnect Xero from AIM at any time via Settings → Integrations → Disconnect. You can also revoke access within your Xero account under Connected Apps.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="policy-section" id="data">
+    <h2>6. Your Data</h2>
+    <p>All data you enter into AIM is stored locally on your device. You retain full ownership of your data. We have no access to it, no copies of it, and no ability to recover it.</p>
+    <h3>Backups are your responsibility</h3>
+    <p>Because AIM does not operate any cloud service or server-side backup, the responsibility for data backup and recovery rests entirely with you. We strongly recommend enabling AIM's built-in backup feature and storing backups in a secure, separate location.</p>
+    <p>We accept no liability for loss of data resulting from hardware failure, accidental deletion, operating system issues, or any other cause.</p>
+    <h3>Data shared with Xero</h3>
+    <p>When you use the Xero integration, data is transmitted directly from your device to Xero's infrastructure. Once data is in Xero, it is governed by Xero's terms and is outside our control. We cannot delete or modify data within your Xero account on your behalf.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="policy-section" id="ip">
+    <h2>7. Intellectual Property</h2>
+    <p>AIM, including its design, code, interface, and documentation, is the intellectual property of AIM Workshop Software and is protected by applicable copyright and intellectual property law.</p>
+    <p>You are granted a licence to use AIM as described in Section 3. Nothing in these Terms transfers ownership of AIM or any part of it to you.</p>
+    <p>Your business data (customers, invoices, vehicles, etc.) that you create within AIM belongs to you.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="policy-section" id="prohibited">
+    <h2>8. Prohibited Use</h2>
+    <p>You must not use AIM to:</p>
+    <ul>
+      <li>Engage in any unlawful activity, including tax fraud or the falsification of financial records</li>
+      <li>Store data you do not have the right to process (e.g. personal data collected without appropriate consent)</li>
+      <li>Attempt to defeat, circumvent, or reverse engineer AIM's licensing, authentication, or security mechanisms</li>
+      <li>Distribute the AIM installer or application files through any channel other than official AIM distribution channels</li>
+    </ul>
+  </div>
+
+  <!-- 9 -->
+  <div class="policy-section" id="disclaimer">
+    <h2>9. Disclaimers & Warranties</h2>
+    <div class="warning-box">
+      <p><strong>AIM is provided "as is" and "as available" without warranties of any kind, express or implied.</strong> To the maximum extent permitted by applicable law, we disclaim all warranties including merchantability, fitness for a particular purpose, and non-infringement.</p>
+    </div>
+    <p>We do not warrant that AIM will be error-free, uninterrupted, or free of bugs. While we work to keep AIM accurate and functional, you should independently verify any financial figures or records that AIM produces before relying on them for tax, compliance, or business purposes.</p>
+    <p>Nothing in these Terms excludes or limits any consumer guarantees or rights that cannot lawfully be excluded under the New Zealand Consumer Guarantees Act 1993 or the Fair Trading Act 1986.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="policy-section" id="liability">
+    <h2>10. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, AIM Workshop Software shall not be liable for any indirect, incidental, special, consequential, or exemplary damages, including but not limited to:</p>
+    <ul>
+      <li>Loss of data or inability to recover data</li>
+      <li>Loss of revenue, profits, or business opportunity</li>
+      <li>Business interruption or downtime</li>
+      <li>Errors or inaccuracies in financial records produced by AIM</li>
+      <li>Any loss arising from your use of, or inability to use, the Xero integration</li>
+    </ul>
+    <p>Our total aggregate liability to you for any claim arising from your use of AIM shall not exceed the amount you paid for AIM in the twelve months prior to the event giving rise to the claim. If AIM was obtained free of charge, our total liability shall not exceed NZD $100.</p>
+    <p>Some jurisdictions do not allow limitations on implied warranties or liability for incidental or consequential damages, so the above limitations may not apply to you.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="policy-section" id="updates">
+    <h2>11. Updates & Changes to AIM</h2>
+    <p>We may release updates, patches, or new versions of AIM from time to time. Updates may add, change, or remove features. We will endeavour to communicate material changes through the application or this website.</p>
+    <p>You are not required to update AIM, but older versions may lose compatibility with third-party integrations (such as Xero's API) over time. We are not responsible for issues arising from your use of an outdated version of AIM.</p>
+    <p>We reserve the right to discontinue AIM at any time. In the event of discontinuation, your locally stored data will remain on your device and accessible to you.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="policy-section" id="termination">
+    <h2>12. Termination</h2>
+    <p>Your licence to use AIM may be terminated:</p>
+    <ul>
+      <li>By you at any time, by uninstalling AIM from your device</li>
+      <li>By us, if you materially breach these Terms and fail to remedy the breach within 14 days of written notice</li>
+    </ul>
+    <p>On termination, your licence to use AIM ceases. Your data remains on your device and is not affected by termination of the licence. Any provisions of these Terms that by their nature should survive termination (including intellectual property, disclaimers, and limitation of liability) will survive.</p>
+  </div>
+
+  <!-- 13 -->
+  <div class="policy-section" id="governing">
+    <h2>13. Governing Law</h2>
+    <p>These Terms are governed by and construed in accordance with the laws of New Zealand. Any disputes arising from these Terms or your use of AIM shall be subject to the exclusive jurisdiction of the courts of New Zealand.</p>
+    <p>If you are using AIM outside of New Zealand, you are responsible for compliance with local laws to the extent they apply.</p>
+  </div>
+
+  <!-- 14 -->
+  <div class="policy-section" id="changes">
+    <h2>14. Changes to These Terms</h2>
+    <p>We may update these Terms from time to time. When we make material changes, we will update the "Last updated" date at the top of this page and, where practical, notify you via the application or our website.</p>
+    <p>Your continued use of AIM after updated Terms are posted constitutes your agreement to the updated Terms. We encourage you to review these Terms periodically. Previous versions are available on request.</p>
+  </div>
+
+  <!-- 15 -->
+  <div class="policy-section" id="contact">
+    <h2>15. Contact Us</h2>
+    <p>For questions, concerns, or notices regarding these Terms, please contact us:</p>
+    <div class="contact-box">
+      <div class="contact-box-title">AIM Workshop Software</div>
+      <p>Wellington, New Zealand</p>
+      <p>Email: <a href="mailto:autoinvoicemanager@gmail.com">autoinvoicemanager@gmail.com</a></p>
+      <p style="margin-top:16px;font-size:12px;color:var(--muted);">We aim to respond to all enquiries within 5 working days.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </p>
+  <p style="margin-top:12px;">© 2026 AIM Workshop Software. All rights reserved · New Zealand</p>
+</footer>
+
+</body>
+</html>
